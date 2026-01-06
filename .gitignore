@@ -1,0 +1,14 @@
+# Dados do Gitea (não versionar)
+gitea-data/
+gitea-config/
+
+# Arquivos de ambiente
+.env
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.swp
+*~
