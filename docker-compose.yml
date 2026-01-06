@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  gitea:
+    # Imagem oficial do Gitea (sempre usa a versão mais recente)
+    image: gitea/gitea:latest
+    
+    # Nome do container
+    container_name: gitea-server
+    
+    # Variáveis de ambiente
+    environment:
+      # ID do usuário para executar o Gitea (1000 é o padrão no Linux)
+      - USER_UID=1000
+      - USER_GID=1000
+    
+    # Reinicia automaticamente se parar
+    restart: unless-stopped
+    
+    # Volumes para persistir os dados
+    volumes:
+      # Dados do Gitea (repositórios, banco de dados, etc)
+      - ./gitea-data:/data
+      # Timezone do sistema
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    
+    # Portas expostas
+    ports:
+      # Porta web (HTTP)
+      - "3000:3000"
+      # Porta SSH para git
+      - "2222:22"
+    
+    # Redes (opcional, mas boa prática)
+    networks:
+      - gitea-network
+
+# Definição da rede
+networks:
+  gitea-network:
+    driver: bridge
