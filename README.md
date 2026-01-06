@@ -13,8 +13,8 @@ Tutorial simples e direto para subir um servidor Gitea usando Docker.
 ### 1. Clone este repositório
 
 ```bash
-git clone <seu-repositorio>
-cd gitea-docker-tutorial
+git clone https://github.com/networkautomationbr/gitea.git
+cd gitea-server
 ```
 
 ### 2. Suba o Gitea
