@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   gitea:
     # Imagem oficial do Gitea (sempre usa a versão mais recente)
