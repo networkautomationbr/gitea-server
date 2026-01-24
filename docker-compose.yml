@@ -11,6 +11,12 @@ services:
       # ID do usuário para executar o Gitea (1000 é o padrão no Linux)
       - USER_UID=1000
       - USER_GID=1000
+      - GITEA__database__DB_TYPE=postgres
+      - GITEA__database__HOST=db:5432
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=gitea
+      - GITEA__actions__ENABLED=true
     
     # Reinicia automaticamente se parar
     restart: unless-stopped
