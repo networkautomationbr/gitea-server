@@ -43,8 +43,8 @@ services:
     # Redes (opcional, mas boa prática)
     networks:
       - gitea-network
-
-db:
+      
+  db:
     image: postgres:16
     container_name: gitea-db
     restart: unless-stopped
