@@ -24,7 +24,7 @@ services:
     # Volumes para persistir os dados
     volumes:
       # Dados do Gitea (repositórios, banco de dados, etc)
-      - ./gitea-data:/data
+      - ./data:/data
       # Timezone do sistema
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -35,11 +35,30 @@ services:
       - "3000:3000"
       # Porta SSH para git
       - "2222:22"
-    
+
+    depends_on:
+      db:
+        condition: service_healthy
+        
     # Redes (opcional, mas boa prática)
     networks:
       - gitea-network
 
+db:
+    image: postgres:16
+    container_name: gitea-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gitea"]
+      interval: 10s
+      retries: 5
+      
 # Definição da rede
 networks:
   gitea-network:
