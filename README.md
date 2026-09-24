@@ -13,21 +13,40 @@ Tutorial simples e direto para subir um servidor Gitea usando Docker.
 ### 1. Clone este repositório
 
 ```bash
+apt install git -y
+cd /opt/
 git clone https://github.com/networkautomationbr/gitea-server.git
 cd gitea-server
 ```
-
-### 2. Suba o Gitea
+### 2. Instalar o Docker
 
 ```bash
+cd /opt/gitea-server
+chmod 777 install_dependencies.sh
+./install_dependencies.sh
+```
+
+### 3. Suba o Gitea
+
+```bash
+cd /opt/gitea-server
+sudo mkdir -p {data,postgres}
 docker-compose up -d
 ```
 
-### 3. Acesse o Gitea
+### 4. Testes
 
-Abra seu navegador em: **http://localhost:3000**
+```bash
+docker compose ps                  # os dois containers devem estar "healthy/running"
+docker compose logs -f gitea       # procure "Starting new Web server"
+curl -I http://localhost:3000      # deve retornar 200
+```
 
-### 4. Configuração inicial
+### 5. Acesse o Gitea
+
+Abra seu navegador em: **http://IP:3000**
+
+### 6. Configuração inicial
 
 Na primeira vez, você verá a tela de instalação:
 
