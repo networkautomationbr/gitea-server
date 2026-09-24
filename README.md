@@ -31,7 +31,7 @@ chmod 777 install_dependencies.sh
 ```bash
 cd /opt/gitea-server
 sudo mkdir -p {data,postgres}
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 4. Testes
